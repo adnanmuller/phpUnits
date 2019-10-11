@@ -34,11 +34,10 @@ class ReceiptTest extends TestCase{
 
   public function provideTotal(){
     return [
-    [[1,2,5,8],16],
+    'ints_totaling_16'=>[[1,2,5,8],15],
     [[-1,2,5,8],14],
     [[1,2,8],11],
   ];
-
 
   }
 
