@@ -43,7 +43,7 @@
             -->
         </whitelist>
     </filter>
-    <!--
+
     <logging>
         <log
             type="coverage-html"
@@ -59,4 +59,5 @@
         />
     </logging>
     -->
+    
 </phpunit>
