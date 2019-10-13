@@ -1,9 +1,15 @@
 <?php
 namespace TDD;
-
+/**require dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
+**/
 use \BadMethodCallException;
 class Receipt{
-  public function total(array $items =[], $coupon){
+
+public function __construct(Formatter $formater){
+  $this->Formatter=$formater;
+}
+
+  public function subtotal(array $items =[], $coupon){
     if($coupon>1.00){
       throw new BadMethodCallException('coupon must be less than or equal to 1.00');
     }
@@ -14,20 +20,20 @@ class Receipt{
     return $sum;
   }
 
-  public function tax($amount,$tax){
-    return $amount*$tax;
+  public function tax($amount){
+    return $this->Formatter->currencyAmt($amount*$this->tax);
   }
 
-  public function postTaxTotal($item, $tax, $coupon){
-    $subtotal=$this->total($item, $coupon);
-    return $subtotal + $this->tax($subtotal, $tax);
+  public function postTaxTotal($item, $coupon){
+    $subtotal=$this->subtotal($item, $coupon);
+    return $subtotal + $this->tax($subtotal);
   }
-
-  public function currencyAmt($input){
-    return round($input, 2);
-  }
-
 }
+/**
+$test1=new receipt(new Formatter);
+$test2=$test1->subtotal([1,5,6],0.10);
+echo $test2;
+**/
 
 
 
