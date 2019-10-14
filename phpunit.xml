@@ -58,6 +58,6 @@
             target="./tmp/coverage/clover.xml"
         />
     </logging>
-    -->
-    
+  
+
 </phpunit>

@@ -72,9 +72,9 @@ class ReceiptTest extends TestCase{
 
   public function testPostTaxTotal(){
     $items=[1,2,5,8];
-    $tax=0.20;
+    $this->Receipt->tax=0.20;
     $coupon=null;
-$Receipt=$this->getMockBuilder('TDD\Receipt')
+/**$Receipt=$this->getMockBuilder('TDD\Receipt')
 ->setMethods(['tax', 'subtotal'])
 ->setConstructorArgs([$this->Formatter])
 ->getMock();
@@ -85,12 +85,12 @@ $Receipt->expects($this->once())
 $Receipt->expects($this->once())
 ->method('tax')
 ->with(10.00)
-->will($this->returnValue(1.00));
-$result=$Receipt->postTaxTotal([1,2,5,8], null);
-$this->assertEquals(11.00, $result);
+->will($this->returnValue(1.00));**/
+$result=$this->Receipt->postTaxTotal([1,2,5,8], null);
+$this->assertEquals(19.00, $result);
 
   }
-
+/**
   public function testTax(){
     $inputAmount=10.00;
     $this->Receipt->tax=0.10;
@@ -101,7 +101,7 @@ $this->assertEquals(11.00, $result);
       'The Tax calculation should equal 1.00'
     );
   }
-
+**/
 
 }
  ?>
